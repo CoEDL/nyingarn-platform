@@ -3,6 +3,7 @@
 - [Fromthepage - containerised!](#fromthepage---containerised)
   - [Building the fromthepage container](#building-the-fromthepage-container)
   - [Setting up a .env file](#setting-up-a-env-file)
+    - [RECAPTCHA](#recaptcha)
   - [Start it up](#start-it-up)
   - [Changes to defaults](#changes-to-defaults)
   - [First run configuration](#first-run-configuration)
@@ -73,6 +74,15 @@ MINIO_SECRET_KEY="minio_pass"
 You can choose to override all or none of the variables set in the compose file but anything you
 define in this file will override anything defined in the compose file. Also, this file is `not`
 checked into git.
+
+### RECAPTCHA
+
+At the very least you need this or people won't be able to sign up to use the service. Go to
+[https://www.google.com/recaptcha/admin/create](https://www.google.com/recaptcha/admin/create) and
+follow the instructions there. Be sure to select `reCAPTCHA v2` as the code doesn't work with v3.
+
+Once you have the `RECAPTCHA_SITE_KEY` and `RECAPTCHA_SECRET_KEY` be sure to put them into the .env
+file!
 
 ## Start it up
 
