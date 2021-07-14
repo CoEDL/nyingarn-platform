@@ -27,7 +27,7 @@ services:
             - 9000:9000
         environment:
             MINIO_ROOT_USER: ${MINIO_ACCESS_KEY}
-            MINIO_ROOT_PASSWORD:
+            MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY}
         command: -c 'mkdir -p /data/fromthepage && /usr/bin/minio server /data'
         volumes:
             - MINIO_VOLUME:/data
