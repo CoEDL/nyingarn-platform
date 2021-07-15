@@ -3,6 +3,7 @@
 - [Fromthepage - containerised!](#fromthepage---containerised)
   - [Building the fromthepage container](#building-the-fromthepage-container)
   - [Setting up a .env file](#setting-up-a-env-file)
+    - [Development or production ?](#development-or-production-)
     - [RECAPTCHA](#recaptcha)
   - [Start it up](#start-it-up)
   - [Changes to defaults](#changes-to-defaults)
@@ -24,7 +25,7 @@ The basic steps to get going are:
 To find out which versions are available see:
 [https://github.com/benwbrum/fromthepage/releases](https://github.com/benwbrum/fromthepage/releases)
 
-Thenm pass the version you want to build through to the build command following:
+Then pass the version you want to build through to the build command following:
 
 ```
 > docker build --tag fromthepage:latest --build-arg VERSION=21.7 .
@@ -74,6 +75,11 @@ MINIO_SECRET_KEY="minio_pass"
 You can choose to override all or none of the variables set in the compose file but anything you
 define in this file will override anything defined in the compose file. Also, this file is `not`
 checked into git.
+
+### Development or production ?
+
+You can start the app up in `development` or `production` mode by setting the `RAILS_ENV` variable
+accordingly.
 
 ### RECAPTCHA
 
