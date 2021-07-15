@@ -1,17 +1,17 @@
 ADMIN_EMAILS = ENV['ADMIN_EMAILS']
 SENDING_EMAIL_ADDRESS = ENV['SENDING_EMAIL_ADDRESS']
-SMTP_ENABLED = ENV['SMTP_ENABLED']
-USE_PNG_LOGO = ENV['USE_PNG_LOGO']
+SMTP_ENABLED = ENV['SMTP_ENABLED'] === "true" ? true : false
+USE_PNG_LOGO = ENV['USE_PNG_LOGO'] === "true" ? true : false
 GUEST_DEED_COUNT = ENV['GUEST_DEED_COUNT']
-GUEST_TRANSCRIPTION_ENABLED = ENV['GUEST_TRANSCRIPTION_ENABLED']
+GUEST_TRANSCRIPTION_ENABLED = ENV['GUEST_TRANSCRIPTION_ENABLED'] === "true" ? true : false
 FACEBOOK_PIXEL_ID = ENV['FACEBOOK_PIXEL_ID']
 MIXPANEL_ID = ENV['MIXPANEL_ID']
 GA_ACCOUNT = ENV['GA_ACCOUNT']
 #single sign on options below
-ENABLE_GOOGLEOAUTH = ENV['ENABLE_GOOGLEOAUTH']
+ENABLE_GOOGLEOAUTH = ENV['ENABLE_GOOGLEOAUTH'] === "true" ? true : false
 GOOGLE_CLIENT_ID = ENV['GOOGLE_CLIENT_ID']
 GOOGLE_CLIENT_SECRET = ENV['GOOGLE_CLIENT_SECRET']
-ENABLE_SAML = ENV['ENABLE_SAML']
+ENABLE_SAML = ENV['ENABLE_SAML'] === "true" ? true : false
 #IDP_SSO_TARGET_URL = 'your.saml.url'
 #IDP_SSO_TARGET_URL = 'https://capriza.github.io/samling/samling.html' #easy test for saml without a saml server
 #the below isn't a reference to the cert file, but the actual cert.  See https://github.com/omniauth/omniauth-saml for other options, like fingerprint.
