@@ -25,10 +25,12 @@ services:
         entrypoint: sh
         ports:
             - 9000:9000
+            - 9001:9001
         environment:
             MINIO_ROOT_USER: ${MINIO_ACCESS_KEY}
             MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY}
-        command: -c 'mkdir -p /data/fromthepage && /usr/bin/minio server /data'
+        command:
+            -c 'mkdir -p /data/fromthepage && /usr/bin/minio server /data --console-address ":9001"'
         volumes:
             - MINIO_VOLUME:/data
         healthcheck:
@@ -41,39 +43,40 @@ services:
         image: fromthepage:latest
         restart: always
         environment:
-            SERVER_HOSTNAME: "localhost"
-            RAILS_ENV: production
+            SERVER_HOSTNAME:
+            RAILS_ENV:
             # ensure these params match whatever you defined for the db up top
             DATABASE_URL: mysql2://root:${MYSQL_ROOT_PASSWORD}@db/ftp_production
             SMTP_ENABLED: "false"
-            SMTP_SERVER: ""
+            SMTP_SERVER:
             SMTP_PORT: 587
-            SMTP_USERNAME: ""
-            SMTP_PASSWORD: ""
-            SMTP_DOMAIN: ""
+            SMTP_USERNAME:
+            SMTP_PASSWORD:
+            SMTP_DOMAIN:
             ADMIN_EMAILS: "you@yourdomain.com, other-email@yourdomain.com"
             SENDING_EMAIL_ADDRESS: "fromthepage-support@yourdomain.com"
-            USE_PNG_LOGO: "false"
+            USE_PNG_LOGO:
             GUEST_DEED_COUNT: 3
-            GUEST_TRANSCRIPTION_ENABLED: "false"
-            FACEBOOK_PIXEL_ID: ""
-            MIXPANEL_ID: ""
-            GA_ACCOUNT: ""
-            ENABLE_GOOGLEOAUTH: ""
-            GOOGLE_CLIENT_ID: ""
-            GOOGLE_CLIENT_SECRET: ""
-            ENABLE_SAML: "false"
-            RECAPTCHA_SITE_KEY: ""
-            RECAPTCHA_SECRET_KEY: ""
-            INTERCOM_APP_ID: ""
-            INTERCOM_ACCESS_TOKEN: ""
-            MINIO_ACCESS_KEY: ""
-            MINIO_SECRET_KEY: ""
+            GUEST_TRANSCRIPTION_ENABLED:
+            FACEBOOK_PIXEL_ID:
+            MIXPANEL_ID:
+            GA_ACCOUNT:
+            ENABLE_GOOGLEOAUTH:
+            GOOGLE_CLIENT_ID:
+            GOOGLE_CLIENT_SECRET:
+            ENABLE_SAML:
+            RECAPTCHA_SITE_KEY:
+            RECAPTCHA_SECRET_KEY:
+            INTERCOM_APP_ID:
+            INTERCOM_ACCESS_TOKEN:
+            MINIO_ACCESS_KEY:
+            MINIO_SECRET_KEY:
         working_dir: /srv/fromthepage
         command: "bash -x /srv/fromthepage/start.sh"
         volumes:
             - FTP_VOLUME:/srv/fromthepage/public
             - ./fromthepage/config/storage.yml:/srv/fromthepage/config/storage.yml
+            - ./fromthepage/config/environments/development.rb:/srv/fromthepage/config/environments/development.rb
             - ./fromthepage/config/environments/production.rb:/srv/fromthepage/config/environments/production.rb
             - ./fromthepage/config/initializers/01fromthepage.rb:/srv/fromthepage/config/initializers/01fromthepage.rb
         ports:
